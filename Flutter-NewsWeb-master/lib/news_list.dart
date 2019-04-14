@@ -20,25 +20,14 @@ class NewsListPage extends StatefulWidget {
 }
 
 
-class Product {
-  String name;
-  String serving_suggestions;
-  String ingredients;
 
-  Product(String name, String serving_suggestions, String ingredients){
-    this.name = name;
-    this.serving_suggestions = serving_suggestions;
-    this.ingredients = ingredients;
-    this.image = image;
-  }
-}
 
 
 
 
 
 class _NewsListPageState extends State<NewsListPage> {
-  //List<Article> list;
+  List<Product> list;
 
   String result = "Hey there !";
   Future _scanQR() async {
@@ -47,7 +36,11 @@ class _NewsListPageState extends State<NewsListPage> {
       setState(() {
         result = qrResult;
         var response = json.decode(result);
-        Product p = new Product(response['Name'], response["Serving Suggestions"], response["Ingredients"], response["image"]);
+        Product p = new Product(response['name'], response["instructions"], response["storage"], response["ingredients"], response["image"], response["origin"], response["produced_by"], response["plastic_points"]);
+        //print(Product.fromJson(response));
+        //Product p = Product.fromJson(response);
+        print(response);
+        print(p);
         products.add(p);
         print(json.decode(result));
         print(products);
@@ -112,7 +105,7 @@ class _NewsListPageState extends State<NewsListPage> {
   Widget listViewWidget(List<Product> article) {
     return Container(
       child: ListView.builder(
-          itemCount: 20,
+          itemCount: article.length,
           padding: const EdgeInsets.all(2.0),
           itemBuilder: (context, position) {
             return Card(
@@ -124,19 +117,19 @@ class _NewsListPageState extends State<NewsListPage> {
                     subtitle: Padding(
                       padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
-                        '${article[position].name}',
+                        'Plastic points earned: ${article[position].plastic_points}',
                       ),
                     ),
                     title: Text(
-                      '${article[position].serving_suggestions}',
+                      '${article[position].name}',
                       style: TextStyle(
                           fontSize: 14.0,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
                     leading: Container(
-                      height: 100.0,
-                      width: 100.0,
+                      height: 80.0,
+                      width: 80.0,
                       child: article[position].image != null
                           ? Image(
                               image:
@@ -154,7 +147,7 @@ class _NewsListPageState extends State<NewsListPage> {
     );
   }
 
-  void _onTapItem(BuildContext context, Article article) {
+  void _onTapItem(BuildContext context, Product article) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) => NewsDetails(article, widget.title)));
   }

@@ -50,3 +50,59 @@ class Source {
     );
   }
 }
+
+class Product {
+  String name;
+  String instructions;
+  String storage;
+  String origin;
+  String produced_by;
+  String plastic_points;
+  String ingredients;
+  String image;
+  String url;
+  String total;
+
+  // Product(
+  // {
+  //   this.name = name,
+  //   this.instructions = instructions,
+  //   this.storage = storage,
+  //   this.ingredients = ingredients,
+  //   this.image = image,
+  //   this.url = '',
+  //   this.origin = origin,
+  //   this.produced_by = produced_by,
+  //   this.plastic_points = plastic_points
+  // });
+
+    Product(String name, String instructions, String storage, String ingredients, String image, String origin, String produced_by, String plastic_points)
+  {
+    this.name = name;
+    this.instructions = instructions;
+    this.storage = storage;
+    this.ingredients = ingredients;
+    this.image = image;
+    this.url = '';
+    this.origin = origin;
+    this.produced_by = produced_by;
+    this.plastic_points = plastic_points;
+    this.total = 'Instructions: ';
+  }
+
+
+  //   factory Product.fromJson(Map<String, dynamic> json) {
+  //   print("hello");
+  //   print(json);
+  //   return Product(
+  //       name: json["name"],
+  //       instructions: json["instructions"],
+  //       ingredients: json["ingredients"],
+  //       url: '',
+  //       image: json["image"],
+  //       origin: json["origin"],
+  //       produced_by: json["produced_by"],
+  //       plastic_points: json["plastic_points"],
+  //       storage: json["storage"]);
+  // }
+}

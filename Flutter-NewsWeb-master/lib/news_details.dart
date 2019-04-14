@@ -3,7 +3,7 @@ import 'package:flutter_news_web/model/news.dart';
 import 'package:flutter_news_web/web_view.dart';
 
 class NewsDetails extends StatefulWidget {
-  final Article article;
+  final Product article;
   final String title;
 
   NewsDetails(this.article, this.title);
@@ -26,11 +26,12 @@ class _NewsDetailsState extends State<NewsDetails> {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  Image.network(widget.article.urlToImage),
+                  Image.network(widget.article.image),
+                //AssetImage(widget.article.image)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.article.title,
+                      widget.article.name,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
@@ -38,25 +39,62 @@ class _NewsDetailsState extends State<NewsDetails> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.article.description,
+                      'Instructions: '+widget.article.instructions,
+                      style: TextStyle(fontSize: 19.0),
+                    ),
+                    ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Origin: '+widget.article.origin,
+                      style: TextStyle(fontSize: 19.0),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Storage: '+widget.article.storage,
+                      style: TextStyle(fontSize: 19.0),
+                    ),
+                  ),
+                                                      Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Produced by: '+widget.article.produced_by,
+                      style: TextStyle(fontSize: 19.0),
+                    ),
+                  ),
+                                    Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Ingredients: '+widget.article.ingredients,
+                      style: TextStyle(fontSize: 19.0),
+                    ),
+                  ),
+                                                      Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Plastic points: '+widget.article.plastic_points,
                       style: TextStyle(fontSize: 19.0),
                     ),
                   )
+
                 ],
               ),
-              MaterialButton(
-                height: 50.0,
-                color: Colors.grey,
-                child: Text(
-                  "For more news",
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                         WebView(widget.article.url)));
-                },
-              )
+              // MaterialButton(
+              //   height: 50.0,
+              //   color: Colors.grey,
+              //   child: Text(
+              //     "For more news",
+              //     style: TextStyle(color: Colors.white, fontSize: 18.0),
+              //   ),
+              //   onPressed: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: (BuildContext context) =>
+              //            WebView(widget.article.url)));
+              //   },
+              // )
             ],
           ),
         ));
